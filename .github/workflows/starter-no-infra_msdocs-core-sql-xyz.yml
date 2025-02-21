@@ -21,7 +21,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '8.0'
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
@@ -29,12 +29,6 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-      - name: install dotnet ef
-        run: dotnet tool install --global dotnet-ef --version 8.*
-
-      - name: Create migrations bundle 
-        run: dotnet ef migrations bundle --runtime linux-x64 -o ${{env.DOTNET_ROOT}}/myapp/migrationsbundle
-      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -60,9 +54,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8265D95391AA4EBDA9CF87B9F635350B }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E9592F352BB2427ABBB4C1ED6F938C5E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3A5D07343CC446458C7211FC13764443 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_60559298E21F442EA564180DB0388BE2 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9C9A43F8F734430386F8B2D28FE5CFDA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1B8462021AAF4A8FB2A7C449A0BBC3DB }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
