@@ -19,7 +19,7 @@ else
      options.InstanceName = "SampleInstance";
     });
 }
-
+//
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
